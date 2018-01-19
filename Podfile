@@ -35,6 +35,7 @@ target 'Pulse' do
   
   target 'NotificationDecryptor' do
     inherit! :search_paths
+    pod 'CryptoSwift', '~> 0.8.0'
   end
   
 end
