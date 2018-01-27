@@ -28,6 +28,7 @@ class _FcmHandler {
         case "removed_conversation":    invalidateConversationList()
         case "archive_conversation":    invalidateConversationList()
         case "dismissed_notification":  dismissNotification(json: json)
+        case "show_notification":       showNotification(json: json)
         default:                        throwAway(operation: operation, json: json)
         }
     }
@@ -75,11 +76,33 @@ class _FcmHandler {
     }
     
     private func dismissNotification(json: JSON) {
-        debugPrint("dismiss notifications")
+        debugPrint("dismiss notifications. From device: \(json["device_id"].stringValue)")
         
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    private func showNotification(json: JSON) {
+        debugPrint("show notification")
+        
+        let notification = UNMutableNotificationContent()
+        notification.title = Account.encryptionUtils!.decrypt(data: json["title"].stringValue)!
+        notification.body = Account.encryptionUtils!.decrypt(data: json["snippet"].stringValue)!
+        notification.sound = UNNotificationSound.default()
+        
+        let identifier = json["conversation_id"].stringValue
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: trigger)
+        
+        let center = UNUserNotificationCenter.current()
+        center.add(request)
+        
+        if let count = Int(json["badge"].stringValue) {
+            UIApplication.shared.applicationIconBadgeNumber = count
+        } else {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        }
     }
     
     private func throwAway(operation: String, json: JSON) {
