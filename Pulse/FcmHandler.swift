@@ -86,9 +86,15 @@ class _FcmHandler {
     private func showNotification(json: JSON) {
         debugPrint("show notification")
         
+        let title = Account.encryptionUtils!.decrypt(data: json["title"].stringValue)!
+        var snippet = Account.encryptionUtils!.decrypt(data: json["snippet"].stringValue)!
+        if snippet == "firebase -1" {
+            snippet = "Media Message"
+        }
+        
         let notification = UNMutableNotificationContent()
-        notification.title = Account.encryptionUtils!.decrypt(data: json["title"].stringValue)!
-        notification.body = Account.encryptionUtils!.decrypt(data: json["snippet"].stringValue)!
+        notification.title = title
+        notification.body = snippet
         notification.sound = UNNotificationSound.default()
         
         let identifier = json["conversation_id"].stringValue
