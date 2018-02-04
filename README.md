@@ -2,6 +2,8 @@
   <img src="artwork/header.png">
 </p>
 
+*Note: This version of Pulse is not available on the App Store. Apple rejected it because "the overall concept is not suited for the App Store", despite my numerous attempts to appeal, call, and point out apps that did the exact same thing as Pulse. If you know someone at Apple that could help with this situation, it would be most appreciated.*
+
 # Pulse SMS - iOS Client
 
 This is a [Pulse SMS](https://messenger.klinkerapps.com/overview) client for iOS. This is **not** a replacement SMS app for your iPhone.
