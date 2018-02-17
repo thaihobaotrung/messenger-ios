@@ -18,7 +18,7 @@ class SentMessageTableViewCell : MessageTableViewCell {
         
         self.messageContainer.backgroundColor = UIColor.groupTableViewBackground
         
-        self.message.text = message.data
+        self.message.text = message.data.trimmingCharacters(in: .whitespacesAndNewlines)
         self.message.textColor = UIColor.black
         self.createWebLinks(label: self.message, conversation: conversation)
     }

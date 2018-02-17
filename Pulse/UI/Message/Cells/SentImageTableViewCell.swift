@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 import Kingfisher
 
 class SentImageTableViewCell : MessageTableViewCell {
@@ -16,7 +17,29 @@ class SentImageTableViewCell : MessageTableViewCell {
     override func bind(conversation: Conversation, message: Message) {
         super.bind(conversation: conversation, message: message)
         
-        let url = URL(string: "https://api.messenger.klinkerapps.com/api/v1/media/\(message.id)?account_id=\(Account.accountId!)")!
+        var url = URL(string: "https://api.messenger.klinkerapps.com/api/v1/media/\(message.id)?account_id=\(Account.accountId!)")!
+        if message.mimeType == MimeType.MEDIA_MAP {
+            debugPrint(message.data)
+            if let dataFromString = message.data.data(using: .utf8, allowLossyConversion: false) {
+                do {
+                    let json = try JSON(data: dataFromString)
+                    url = URL(string: handleMap(json: json))!
+                } catch { }
+            }
+        }
+        
         self.message.kf.setImage(with: url, options: [.transition(.fade(0.2))])
     }
+    
+    private func handleMap(json: JSON) -> String {
+        let lat =  json["latitude"].string!
+        let long = json["longitude"].string!
+        let url = "https://maps.googleapis.com/maps/api/staticmap" +
+            "?size=600x400" +
+            "&markers=color:red%7C\(lat),\(long)" +
+        "&key=AIzaSyAHq1IIIdGz01rEbEtUtDwEFJWwvAI_lww"
+        
+        return url
+    }
+    
 }

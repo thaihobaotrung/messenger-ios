@@ -27,7 +27,7 @@ class CellIdentifier {
         } else if message.messageType == MessageType.INFO {
             return "InfoTableViewCell"
         } else if message.messageType == MessageType.RECEIVED {
-            if MimeType.isImage(mimeType: message.mimeType) {
+            if MimeType.isImage(mimeType: message.mimeType) || message.mimeType == MimeType.MEDIA_MAP {
                 return "ReceivedImageTableViewCell"
             } else if MimeType.isAudio(mimeType: message.mimeType) || MimeType.isVideo(mimeType: message.mimeType) || MimeType.isVCard(mimeType: message.mimeType) {
                 return "UnsupportedMediaTableViewCell"
@@ -35,7 +35,7 @@ class CellIdentifier {
                 return "ReceivedMessageTableViewCell"
             }
         } else {
-            if MimeType.isImage(mimeType: message.mimeType) {
+            if MimeType.isImage(mimeType: message.mimeType) || message.mimeType == MimeType.MEDIA_MAP {
                 return "SentImageTableViewCell"
             } else if MimeType.isAudio(mimeType: message.mimeType) || MimeType.isVideo(mimeType: message.mimeType) || MimeType.isVCard(mimeType: message.mimeType) {
                 return "UnsupportedMediaTableViewCell"

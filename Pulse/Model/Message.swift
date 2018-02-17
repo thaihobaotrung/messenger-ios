@@ -118,6 +118,7 @@ class MimeType {
     static let MEDIA_YOUTUBE_V2 = "media/youtube-v2"
     static let MEDIA_ARTICLE = "media/web"
     static let MEDIA_TWITTER = "media/twitter"
+    static let MEDIA_MAP = "media/map"
     
     static func isText(mimeType: String) -> Bool {
         return mimeType.lowercased() == TEXT_PLAIN

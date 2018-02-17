@@ -49,5 +49,6 @@ class MediaTableViewCell : MessageTableViewCell {
         self.title.text = json["title"].string!
         self.descriptionLabel.text = "YouTube"
     }
+    
 }
 

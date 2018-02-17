@@ -16,9 +16,6 @@ import FirebaseMessaging
 
 class LoginViewController : UIViewController, UITextFieldDelegate {
     
-    // TODO: Update the UI when the login is happening and when the encryption key is getting made
-    // TODO: Improve the UI of this page, in general
-
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var login: UIButton!
@@ -34,11 +31,11 @@ class LoginViewController : UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func signup(_ sender: Any) {
-        if let url = URL(string: "https://messenger.klinkerapps.com/overview/platform-ios.html") {
-            UIApplication.shared.open(url, options: [:])
-        }
-    }
+//    @IBAction func signup(_ sender: Any) {
+//        if let url = URL(string: "https://messenger.klinkerapps.com/overview/platform-ios.html") {
+//            UIApplication.shared.open(url, options: [:])
+//        }
+//    }
     
     @IBAction func login(_ sender: Any) {
         if email.text != nil && email.text!.count != 0 && password.text != nil && password.text!.count != 0 {

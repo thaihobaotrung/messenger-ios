@@ -16,7 +16,7 @@ class ReceivedMessageTableViewCell : MessageTableViewCell {
     func bind(conversation: Conversation, message: Message, colorMapper: GroupColorMapper) {
         super.bind(conversation: conversation, message: message)
         
-        self.message.text = message.data
+        self.message.text = message.data.trimmingCharacters(in: .whitespacesAndNewlines)
         self.message.textColor = UIColor.white
         self.createWebLinks(label: self.message, conversation: conversation)
         
