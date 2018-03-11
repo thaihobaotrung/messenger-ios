@@ -20,7 +20,7 @@ Typical use-cases for this iOS client:
 * Having a separate work iPhone that you want to be able to use with your personal Android phone number
 * Demonstration of the APIs, their usage, and implementation for other third party clients
 
-The app is not available on the Apple App Store, yet. I have a few things to finish, then I will be uploading it for Apple to approve.
+The app is not available on the Apple App Store, Apple has rejected it because "the overall concept of the app is not suited for the App Store". Since there are specific configurations to be made with Apple's APN push notification system, push notifications for new messages will not be able to come to a self-built version of the app. They will only be possible if Apple accepts the app to their App Store.
 
 ## Building the App
 
